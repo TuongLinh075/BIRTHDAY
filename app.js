@@ -808,6 +808,22 @@
     // Populate Photos
     renderPolaroidGallery(data.photos || []);
 
+    // Video CapCut Memory Card
+    const videoCardEl = document.getElementById('video-memory-card');
+    const videoTitleEl = document.getElementById('display-video-title');
+    const videoBtnEl = document.getElementById('btn-watch-capcut');
+    if (videoCardEl && videoBtnEl) {
+      if (data.videoUrl) {
+        videoCardEl.classList.remove('hidden');
+        if (videoTitleEl) {
+          videoTitleEl.innerText = data.videoTitle || '🎬 Video CapCut 10 Ảnh Giật Giật Kỷ Niệm';
+        }
+        videoBtnEl.href = data.videoUrl;
+      } else {
+        videoCardEl.classList.add('hidden');
+      }
+    }
+
     // Show Music Toggle
     elMusicToggle.classList.remove('hidden');
   }
@@ -1003,6 +1019,16 @@
         document.getElementById('input-wish-message').value = sample.wishMessage;
         document.getElementById('input-sender-name').value = sample.senderName;
 
+        // Set video CapCut if available
+        const videoUrlInput = document.getElementById('input-video-url');
+        const videoTitleInput = document.getElementById('input-video-title');
+        if (videoUrlInput && sample.videoUrl) {
+          videoUrlInput.value = sample.videoUrl;
+        }
+        if (videoTitleInput && sample.videoTitle) {
+          videoTitleInput.value = sample.videoTitle;
+        }
+
         // Set radio theme
         const themeRadio = document.querySelector(`input[name="selected-theme"][value="${sample.theme}"]`);
         if (themeRadio) themeRadio.checked = true;
@@ -1161,6 +1187,8 @@
 
     const selectedTheme = document.querySelector('input[name="selected-theme"]:checked')?.value || 'theme-pastel';
     const selectedMusic = document.querySelector('input[name="selected-music"]:checked')?.value || 'musicbox';
+    const videoUrl = document.getElementById('input-video-url')?.value.trim() || '';
+    const videoTitle = document.getElementById('input-video-title')?.value.trim() || '';
 
     if (!recipientName || !wishMessage) {
       alert('Vui lòng nhập Tên người nhận và Lời chúc sinh nhật nhé!');
@@ -1172,6 +1200,8 @@
       birthdate,
       wishMessage,
       senderName,
+      videoUrl,
+      videoTitle,
       theme: selectedTheme,
       music: selectedMusic,
       photos: creatorUploadedPhotos

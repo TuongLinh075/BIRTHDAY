@@ -1429,9 +1429,141 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes popUp {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
+/* --- CAPCUT VIDEO MEMORY SECTION --- */
+.video-memory-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(254, 242, 242, 0.85) 100%);
+  border: 1.5px solid rgba(244, 63, 94, 0.35);
+  box-shadow: 0 12px 35px rgba(244, 63, 94, 0.18), 0 0 20px rgba(56, 189, 248, 0.15);
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+body.theme-gold .video-memory-section {
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.88) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 12px 35px rgba(245, 158, 11, 0.25);
+}
+
+.video-top-decor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.video-badge-tag {
+  background: #000000;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.video-trending-tag {
+  background: linear-gradient(135deg, #f43f5e, #fb923c);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  animation: pulseBadge 2s infinite ease-in-out;
+}
+
+@keyframes pulseBadge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.video-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.video-card-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.5;
+}
+
+.video-action-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-capcut-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff !important;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.35), 0 0 0 3px rgba(244, 63, 94, 0.3);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-capcut-play:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.45), 0 0 0 4px rgba(244, 63, 94, 0.5);
+}
+
+.play-icon-circle {
+  width: 32px;
+  height: 32px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  animation: pulsePlay 1.6s infinite;
+}
+
+@keyframes pulsePlay {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); box-shadow: 0 0 16px var(--primary); }
+}
+
+/* Video Input Box in Creator Studio */
+.video-input-box {
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  background: rgba(var(--primary-rgb), 0.04);
+  border: 1.5px dashed rgba(var(--primary-rgb), 0.35);
+  border-radius: var(--radius-md);
+}
+
+.video-input-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.video-icon-mini {
+  font-size: 1.2rem;
 }
 
 /* Mobile Responsive */

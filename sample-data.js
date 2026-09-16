@@ -5,6 +5,8 @@ window.SAMPLE_BIRTHDAY_DATA = {
   senderName: "Người đặc biệt ✨",
   theme: "theme-pastel",
   music: "musicbox",
+  videoUrl: "https://www.capcut.com/editor-template?enter_from=page_header&from_page=template_page&create_id=7191462789989338370&template_search_scene=search&template_search_id=20260916232847870654503E1D67268C61&template_search_keyword=m%E1%BA%ABu+10+%E1%BA%A3nh+gi%E1%BA%ADt+gi%E1%BA%ADt&template_search_keyword_source=input&template_scale=9%3A16&rank=2&template_tab_name=video&work_space_template_from=templatelist_search&template_producer_appid=3006",
+  videoTitle: "🎬 Video CapCut 10 Ảnh Giật Giật Kỷ Niệm",
   wishMessage: "Chúc mừng sinh nhật cô gái tuyệt vời nhất! 🎂✨\n\nTuổi mới chúc bạn luôn tràn ngập nụ cười rạng rỡ, xinh đẹp, bình an và đạt được tất cả những ước mơ mà bạn hằng ấp ủ.\n\nCảm ơn bạn vì đã luôn là một mảnh ghép dịu dàng và mang lại biết bao niềm vui. Hãy luôn tự tin tỏa sáng như chính con người bạn nhé! Happy Birthday to you! 💖🎉",
   photos: [
     {

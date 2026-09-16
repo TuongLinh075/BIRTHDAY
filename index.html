@@ -114,6 +114,24 @@
         </div>
       </div>
 
+      <!-- Video Memory Card (CapCut / Reels) -->
+      <div class="video-memory-section glass-card hidden" id="video-memory-card">
+        <div class="video-card-inner">
+          <div class="video-top-decor">
+            <span class="video-badge-tag">🎬 VIDEO KỶ NIỆM CAPCUT</span>
+            <span class="video-trending-tag">🔥 10 Ảnh Giật Giật</span>
+          </div>
+          <h3 class="video-card-title" id="display-video-title">Video 10 Ảnh Giật Giật Kỷ Niệm</h3>
+          <p class="video-card-desc">Bấm vào đây để mở và thưởng thức video âm nhạc hiệu ứng giật giật trên CapCut dành riêng cho bạn!</p>
+          <div class="video-action-wrapper">
+            <a id="btn-watch-capcut" href="#" target="_blank" rel="noopener noreferrer" class="btn-capcut-play">
+              <span class="play-icon-circle">▶</span>
+              <span class="play-btn-text">Mở Xem Video Trên CapCut</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <!-- Polaroid Photo Memories -->
       <div class="memories-section glass-card" id="memories-container">
         <h3 class="section-heading">📸 Những Khoảnh Khắc Kỷ Niệm</h3>
@@ -226,6 +244,17 @@
 
           <!-- Danh sách ảnh xem trước & nhập chú thích -->
           <div class="photo-previews-container" id="photo-previews-list"></div>
+
+          <!-- Thêm link Video CapCut / TikTok -->
+          <div class="video-input-box">
+            <div class="video-input-header">
+              <span class="video-icon-mini">🎬</span>
+              <label for="input-video-url">Hoặc Thêm Video CapCut / TikTok Kỷ Niệm (Tùy chọn):</label>
+            </div>
+            <input type="url" id="input-video-url" placeholder="Dán link mẫu CapCut (https://www.capcut.com/editor-template?...)">
+            <input type="text" id="input-video-title" placeholder="Tiêu đề video (Ví dụ: Video 10 ảnh giật giật kỷ niệm...)" style="margin-top: 8px;">
+            <p class="form-hint" style="margin-top: 6px;">💡 Khi người nhận mở hộp quà, họ sẽ thấy nút mở ngay video hiệu ứng CapCut cực chất này!</p>
+          </div>
         </div>
 
         <!-- Bước 4: Phong cách & Nhạc nền -->
