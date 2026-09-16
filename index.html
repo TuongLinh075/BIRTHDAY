@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Chiếc Hộp Quà Sinh Nhật Kỷ Niệm 🎁 | Magic Birthday Box</title>
+  <meta name="description" content="Trang web chúc mừng sinh nhật tương tác diệu kỳ - Mở hộp quà 3D, xem album ảnh kỷ niệm, thổi nến sinh nhật và gửi lời chúc yêu thương.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-pastel">
+
+  <!-- Background Ambient Floating Elements -->
+  <div class="ambient-decorations" id="ambient-decor">
+    <div class="floating-bubble b1"></div>
+    <div class="floating-bubble b2"></div>
+    <div class="floating-bubble b3"></div>
+    <div class="floating-bubble b4"></div>
+    <div class="floating-star s1">✨</div>
+    <div class="floating-star s2">💖</div>
+    <div class="floating-star s3">🎉</div>
+    <div class="floating-star s4">🎂</div>
+  </div>
+
+  <!-- Canvas for Confetti -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Audio Control Button (Floating) -->
+  <button id="music-toggle-btn" class="music-toggle hidden" aria-label="Bật/Tắt nhạc">
+    <span class="music-icon">🎵</span>
+    <span class="music-waves">
+      <span></span><span></span><span></span>
+    </span>
+  </button>
+
+  <!-- ============================================== -->
+  <!-- 1. CHẾ ĐỘ MỞ QUÀ (THE GIFT EXPERIENCE VIEW) -->
+  <!-- ============================================== -->
+  <main id="card-view" class="view-container">
+    
+    <!-- Màn 1: Hộp quà 3D chờ mở -->
+    <section id="stage-box" class="stage-section active">
+      <div class="stage-header animate-fade-down">
+        <span class="badge-pill">🎉 Món Quà Bất Ngờ</span>
+        <h1 class="recipient-title" id="display-recipient-title">Gửi tặng Bạn Thân Yêu</h1>
+        <p class="stage-subtitle" id="display-subtitle">Có một điều đặc biệt đang chờ bạn khám phá...</p>
+      </div>
+
+      <!-- 3D Gift Box -->
+      <div class="gift-box-wrapper" id="gift-box-wrapper">
+        <div class="gift-box" id="interactive-gift-box" title="Chạm để mở quà!">
+          <!-- Hộp quà phần nắp -->
+          <div class="box-lid">
+            <div class="ribbon-bow">
+              <div class="bow-loop left"></div>
+              <div class="bow-loop right"></div>
+              <div class="bow-center"></div>
+            </div>
+            <div class="lid-ribbon-horizontal"></div>
+            <div class="lid-ribbon-vertical"></div>
+          </div>
+          <!-- Hộp quà phần thân -->
+          <div class="box-body">
+            <div class="box-ribbon-vertical"></div>
+            <div class="box-ribbon-horizontal"></div>
+            <div class="gift-tag" id="display-box-tag">
+              <span>🎁 Gửi riêng cho bạn</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tap-hint" id="box-tap-hint">
+          <div class="finger-pointer">👆</div>
+          <p>Chạm vào hộp quà để mở điều kỳ diệu!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Màn 2: Mở quà thành công, pháo hoa nổ & Các phần quà bung tỏa -->
+    <section id="stage-content" class="stage-section hidden">
+      
+      <!-- Top Greetings Banner -->
+      <div class="greeting-banner animate-pop">
+        <div class="sparkle-tag">✨ HAPPY BIRTHDAY ✨</div>
+        <h2 class="celebration-name" id="display-name-celebrate">Chúc Mừng Sinh Nhật!</h2>
+        <p class="celebration-date" id="display-birthdate"></p>
+      </div>
+
+      <!-- Interactive Birthday Cake & Candles -->
+      <div class="cake-container glass-card">
+        <h3 class="section-heading">🎂 Thổi Nến Ước Nguyện</h3>
+        <p class="cake-instruction" id="cake-status-text">Hãy nhắm mắt, ước một điều và chạm vào ngọn nến để thổi!</p>
+        
+        <div class="birthday-cake" id="interactive-cake">
+          <div class="candle" id="birthday-candle">
+            <div class="flame" id="candle-flame"></div>
+            <div class="smoke" id="candle-smoke"></div>
+          </div>
+          <div class="cake-top">
+            <div class="cream-drips"></div>
+          </div>
+          <div class="cake-middle"></div>
+          <div class="cake-bottom"></div>
+          <div class="cake-plate"></div>
+        </div>
+
+        <div class="wish-granted-badge hidden" id="wish-granted-badge">
+          🎉 Điều ước đã được gửi đi! Chúc mọi ước nguyện tuổi mới thành hiện thực! ✨
+        </div>
+      </div>
+
+      <!-- Polaroid Photo Memories -->
+      <div class="memories-section glass-card" id="memories-container">
+        <h3 class="section-heading">📸 Những Khoảnh Khắc Kỷ Niệm</h3>
+        <p class="section-sub">Chạm vào từng bức ảnh để phóng to và xem lời nhắn nhé</p>
+        
+        <div class="polaroid-gallery" id="polaroid-gallery">
+          <!-- Các tấm ảnh Polaroid sẽ được render động ở đây -->
+        </div>
+      </div>
+
+      <!-- Heartfelt Letter / Wish Message -->
+      <div class="letter-section glass-card">
+        <div class="letter-envelope-decor">💌</div>
+        <h3 class="section-heading">Bức Thư Gửi Bạn</h3>
+        <div class="letter-paper">
+          <div class="letter-sender-to" id="display-letter-to">Gửi bạn thân mến,</div>
+          <div class="letter-body" id="display-letter-message">
+            <!-- Nội dung lời chúc chạy gõ chữ -->
+          </div>
+          <div class="letter-sign" id="display-letter-sign">Thân thương trao gửi ❤️</div>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="card-footer-actions">
+        <button id="btn-reopen-box" class="btn-secondary">
+          <span>🔄 Xem lại từ đầu</span>
+        </button>
+        <button id="btn-create-own" class="btn-primary">
+          <span>✨ Tự tạo thiệp cho bạn bè</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================== -->
+  <!-- 2. STUDIO TẠO THIỆP (CARD CREATOR VIEW) -->
+  <!-- ============================================== -->
+  <section id="creator-view" class="view-container hidden">
+    <div class="creator-wrapper">
+      
+      <header class="creator-header">
+        <div class="creator-badge">🪄 Studio Tạo Quà Tặng Tự Động</div>
+        <h1 class="creator-title">Tạo Hộp Quà Sinh Nhật Kỳ Diệu</h1>
+        <p class="creator-desc">Tự thiết kế hộp quà 3D, tải ảnh kỷ niệm, chọn nhạc nền và nhận ngay 1 đường link duy nhất gửi tặng bạn bè qua Zalo / Facebook!</p>
+      </header>
+
+      <form id="creator-form" class="creator-card glass-card">
+        
+        <!-- Bước 1: Thông tin người nhận -->
+        <div class="form-group-block">
+          <div class="step-badge">1</div>
+          <h2 class="form-step-title">Thông Tin Người Nhận</h2>
+          
+          <div class="form-grid-2">
+            <div class="input-group">
+              <label for="input-recipient-name">Tên hoặc Biệt danh người nhận *</label>
+              <input type="text" id="input-recipient-name" placeholder="Ví dụ: Bé Miu, Hoàng Nam, Linh Cute..." required maxlength="40">
+            </div>
+            <div class="input-group">
+              <label for="input-birthdate">Ngày sinh nhật (Tùy chọn)</label>
+              <input type="date" id="input-birthdate">
+            </div>
+          </div>
+        </div>
+
+        <!-- Bước 2: Lời chúc chân thành -->
+        <div class="form-group-block">
+          <div class="step-badge">2</div>
+          <h2 class="form-step-title">Lời Chúc Sinh Nhật Yêu Thương</h2>
+          
+          <!-- Lời chúc mẫu nhanh -->
+          <div class="quick-wishes-bar">
+            <span class="quick-label">⚡ Chọn mẫu gợi ý:</span>
+            <button type="button" class="btn-chip" data-wish-type="sweet">💖 Ngọt ngào lãng mạn</button>
+            <button type="button" class="btn-chip" data-wish-type="funny">😂 Hài hước bá đạo</button>
+            <button type="button" class="btn-chip" data-wish-type="friend">🍻 Bạn thân chí cốt</button>
+            <button type="button" class="btn-chip" data-wish-type="deep">🌟 Trưởng thành & Thành công</button>
+          </div>
+
+          <div class="input-group">
+            <label for="input-wish-message">Nội dung thư chúc mừng *</label>
+            <textarea id="input-wish-message" rows="5" placeholder="Gõ những lời chúc từ đáy lòng của bạn..." required></textarea>
+          </div>
+
+          <div class="input-group">
+            <label for="input-sender-name">Chữ ký người gửi (Tùy chọn)</label>
+            <input type="text" id="input-sender-name" placeholder="Ví dụ: Từ người bạn giấu tên, Mai Anh..." maxlength="30">
+          </div>
+        </div>
+
+        <!-- Bước 3: Tải ảnh kỷ niệm (Polaroid Photos) -->
+        <div class="form-group-block">
+          <div class="step-badge">3</div>
+          <div class="step-title-with-badge">
+            <h2 class="form-step-title">Album Ảnh Kỷ Niệm (Polaroid)</h2>
+            <span class="pill-note">Hỗ trợ 1 - 5 bức ảnh</span>
+          </div>
+          <p class="form-hint">Ảnh sẽ tự động nén tối ưu, hiển thị dạng ảnh chụp lấy liền Polaroid bay ra từ hộp quà!</p>
+
+          <div class="photo-upload-zone" id="photo-drop-zone">
+            <input type="file" id="input-photo-files" accept="image/*" multiple class="file-input-hidden">
+            <div class="drop-zone-content" id="drop-zone-content">
+              <div class="upload-icon">📸</div>
+              <p class="upload-prompt">Bấm vào đây hoặc kéo thả ảnh vào</p>
+              <span class="upload-sub">Chọn tối đa 5 ảnh (Ảnh sẽ được nén nét & nhẹ để gửi link)</span>
+            </div>
+          </div>
+
+          <!-- Danh sách ảnh xem trước & nhập chú thích -->
+          <div class="photo-previews-container" id="photo-previews-list"></div>
+        </div>
+
+        <!-- Bước 4: Phong cách & Nhạc nền -->
+        <div class="form-group-block">
+          <div class="step-badge">4</div>
+          <h2 class="form-step-title">Giao Diện & Nhạc Nền</h2>
+          
+          <label class="sub-label">Chọn phong cách màu sắc:</label>
+          <div class="theme-picker-grid">
+            <label class="theme-option">
+              <input type="radio" name="selected-theme" value="theme-pastel" checked>
+              <div class="theme-card-preview preview-pastel">
+                <div class="theme-swatch"></div>
+                <span class="theme-name">🌸 Sweet Pastel</span>
+                <span class="theme-sub">Ngọt ngào, dịu dàng</span>
+              </div>
+            </label>
+
+            <label class="theme-option">
+              <input type="radio" name="selected-theme" value="theme-gold">
+              <div class="theme-card-preview preview-gold">
+                <div class="theme-swatch"></div>
+                <span class="theme-name">✨ Starry Gold</span>
+                <span class="theme-sub">Đêm tiệc lung linh sang chảnh</span>
+              </div>
+            </label>
+
+            <label class="theme-option">
+              <input type="radio" name="selected-theme" value="theme-vintage">
+              <div class="theme-card-preview preview-vintage">
+                <div class="theme-swatch"></div>
+                <span class="theme-name">🍂 Warm Vintage</span>
+                <span class="theme-sub">Ấm áp & hoài niệm</span>
+              </div>
+            </label>
+          </div>
+
+          <label class="sub-label" style="margin-top: 1.2rem;">Giai điệu sinh nhật:</label>
+          <div class="music-picker-grid">
+            <label class="music-option">
+              <input type="radio" name="selected-music" value="musicbox" checked>
+              <div class="music-card-preview">
+                <span class="music-icon-small">🎼</span>
+                <div>
+                  <div class="music-title">Hộp nhạc Kalimba (Đề xuất)</div>
+                  <div class="music-sub">Tự động phát không cần mạng</div>
+                </div>
+              </div>
+            </label>
+
+            <label class="music-option">
+              <input type="radio" name="selected-music" value="acoustic">
+              <div class="music-card-preview">
+                <span class="music-icon-small">🎸</span>
+                <div>
+                  <div class="music-title">Acoustic Guitar Vui Tươi</div>
+                  <div class="music-sub">Rộn ràng, vui nhộn</div>
+                </div>
+              </div>
+            </label>
+
+            <label class="music-option">
+              <input type="radio" name="selected-music" value="piano">
+              <div class="music-card-preview">
+                <span class="music-icon-small">🎹</span>
+                <div>
+                  <div class="music-title">Piano Lãng Mạn</div>
+                  <div class="music-sub">Dịu êm, ấm cúng</div>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Submit & Quick Demo Buttons -->
+        <div class="creator-actions-bar">
+          <button type="button" id="btn-load-sample" class="btn-outline">
+            <span>🎁 Tải Dữ Liệu Mẫu (Xem thử)</span>
+          </button>
+          <button type="submit" id="btn-submit-create" class="btn-primary btn-large">
+            <span>🚀 Tạo Link Hộp Quà Sinh Nhật</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================================== -->
+  <!-- 3. MODAL CHIA SẺ LINK (SHARE POPUP) -->
+  <!-- ============================================== -->
+  <div class="modal-overlay hidden" id="share-modal">
+    <div class="modal-box glass-card animate-pop">
+      <button class="modal-close" id="btn-close-modal" aria-label="Đóng">✕</button>
+      
+      <div class="modal-badge">🎉 Hoàn Tất Thành Công!</div>
+      <h3 class="modal-title">Hộp Quà Sinh Nhật Đã Sẵn Sàng!</h3>
+      <p class="modal-desc">Chỉ cần gửi đường link này cho người nhận qua Zalo, Facebook Messenger hoặc tin nhắn:</p>
+
+      <div class="link-copy-box">
+        <input type="text" id="share-link-input" readonly>
+        <button type="button" id="btn-copy-link" class="btn-primary">
+          <span id="copy-btn-text">📋 Sao Chép Link</span>
+        </button>
+      </div>
+
+      <div class="qr-section">
+        <p class="qr-label">📱 Hoặc quét mã QR để mở trên điện thoại:</p>
+        <div class="qr-container" id="qr-code-display"></div>
+      </div>
+
+      <div class="modal-footer-btns">
+        <button type="button" id="btn-preview-card" class="btn-secondary">
+          <span>👀 Xem Thử Thiệp Vừa Tạo</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- 4. MODAL PHÓNG TO ẢNH (POLAROID LIGHTBOX) -->
+  <!-- ============================================== -->
+  <div class="modal-overlay hidden" id="photo-lightbox">
+    <div class="lightbox-content animate-pop" id="lightbox-container">
+      <button class="lightbox-close" id="btn-close-lightbox" aria-label="Đóng">✕</button>
+      <div class="lightbox-polaroid">
+        <img id="lightbox-img" src="" alt="Kỷ niệm sinh nhật">
+        <p class="lightbox-caption" id="lightbox-caption"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="sample-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
