@@ -1,8 +1,8 @@
 // Dữ liệu mẫu (Sample Demo Data) để người dùng có thể thử nghiệm ngay lập tức
 window.SAMPLE_BIRTHDAY_DATA = {
-  recipientName: "Bé Trúc Yêu Dấu 🌸",
+  recipientName: "Bé Yêu Dấu 🌸",
   birthdate: "2026-09-16",
-  senderName: "Người bạn đặc biệt ✨",
+  senderName: "Người đặc biệt ✨",
   theme: "theme-pastel",
   music: "musicbox",
   wishMessage: "Chúc mừng sinh nhật cô gái tuyệt vời nhất! 🎂✨\n\nTuổi mới chúc bạn luôn tràn ngập nụ cười rạng rỡ, xinh đẹp, bình an và đạt được tất cả những ước mơ mà bạn hằng ấp ủ.\n\nCảm ơn bạn vì đã luôn là một mảnh ghép dịu dàng và mang lại biết bao niềm vui. Hãy luôn tự tin tỏa sáng như chính con người bạn nhé! Happy Birthday to you! 💖🎉",
